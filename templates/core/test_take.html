@@ -1,0 +1,90 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>{{ test.title }}</h2>
+    <p>{{ test.description }}</p>
+    <div id="test-app">
+      <div id="timer" style="float:right"></div>
+      <form id="test-form">
+        {% csrf_token %}
+        {% for q in questions %}
+          <div class="question" data-qid="{{ q.id }}">
+            <h4>{{ forloop.counter }}. {{ q.text }} <small>({{ q.points }} pt)</small></h4>
+            <div class="choices">
+              {% for c in q.choices.all %}
+                {% if q.allow_multiple %}
+                  <label><input type="checkbox" name="q_{{ q.id }}" value="{{ c.id }}"> {{ c.text }}</label><br>
+                {% else %}
+                  <label><input type="radio" name="q_{{ q.id }}" value="{{ c.id }}"> {{ c.text }}</label><br>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+        <div style="margin-top:18px">
+          <button id="save-btn" class="btn" type="button">Progressni saqlash</button>
+          <button id="submit-btn" class="btn" type="button">Testni yakunlash va baholash</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      (function(){
+        const startAttempt = async () => {
+          const res = await fetch(location.pathname, {method:'POST', headers:{'x-requested-with':'XMLHttpRequest', 'X-CSRFToken': getCookie('csrftoken')}, body: new URLSearchParams()});
+          const data = await res.json();
+          return data;
+        };
+
+        function getCookie(name) {
+          let v = null;
+          if (document.cookie) {
+            const parts = document.cookie.split(';');
+            for (let p of parts) {
+              const kv = p.trim().split('='); if (kv[0]===name) { v = decodeURIComponent(kv[1]); break; }
+            }
+          }
+          return v;
+        }
+
+        let attemptId = null;
+        let expiresAt = null;
+        startAttempt().then(d => { attemptId = d.attempt_id; expiresAt = d.expires_at ? new Date(d.expires_at) : null; if (expiresAt) startTimer(); });
+
+        async function saveProgress() {
+          if (!attemptId) return alert('Attempt not started');
+          const form = document.getElementById('test-form');
+          const fd = new FormData(form);
+          const payload = new URLSearchParams();
+          for (const p of fd.entries()) payload.append(p[0], p[1]);
+          const res = await fetch(`/api/attempts/${attemptId}/save/`, {method:'POST', headers:{'X-CSRFToken': getCookie('csrftoken')}, body: payload});
+          const j = await res.json(); alert(j.detail || 'Saved');
+        }
+
+        async function submitAttempt(){
+          if (!attemptId) return alert('Attempt not started');
+          const form = document.getElementById('test-form');
+          const fd = new FormData(form);
+          const payload = new URLSearchParams();
+          for (const p of fd.entries()) payload.append(p[0], p[1]);
+          const res = await fetch(`/api/attempts/${attemptId}/submit/`, {method:'POST', headers:{'X-CSRFToken': getCookie('csrftoken')}, body: payload});
+          if (res.status === 200){ const j = await res.json(); window.location.href = `/attempt/${j.attempt_id}/result/`; }
+          else { const j = await res.json().catch(()=>({detail:'Error'})); alert(j.detail || 'Error submitting'); }
+        }
+
+        document.getElementById('save-btn').addEventListener('click', saveProgress);
+        document.getElementById('submit-btn').addEventListener('click', submitAttempt);
+
+        function startTimer(){
+          const timerEl = document.getElementById('timer');
+          const tick = () => {
+            const now = new Date();
+            const diff = Math.max(0, Math.floor((expiresAt - now)/1000));
+            const m = Math.floor(diff/60); const s = diff%60; timerEl.textContent = `Qolgan vaqt: ${m}:${s.toString().padStart(2,'0')}`;
+            if (diff<=0){ clearInterval(iv); alert('Vaqt tugadi, test avtomatik yopiladi'); submitAttempt(); }
+          };
+          const iv = setInterval(tick, 1000); tick();
+        }
+      })();
+    </script>
+  </div>
+{% endblock %}

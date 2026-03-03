@@ -1,0 +1,19 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+    {% if video.url %}
+      <p>External: <a href="{{ video.url }}" target="_blank">Ko'rish</a></p>
+    {% endif %}
+    {% if video.file %}
+      <video controls style="max-width:100%"><source src="{{ video.file.url }}">Sizning brauzeringiz video tegini qo'llab-quvvatlamaydi.</video>
+      {% if user.is_authenticated %}
+        <p><a href="{% url 'core:video_download' video.id %}">Yuklab olish</a></p>
+      {% else %}
+        <p class="text-warning">Video faylni yuklab olish uchun ro'yxatdan o'ting yoki kiring.</p>
+      {% endif %}
+    {% endif %}
+    <p><a href="{% url 'core:videos_list' %}">Ortga</a></p>
+  </div>
+{% endblock %}

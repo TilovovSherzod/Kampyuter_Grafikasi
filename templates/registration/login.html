@@ -1,0 +1,27 @@
+{% extends 'base_fragment.html' %}
+{% block content %}
+<div class="container auth-page">
+  <div class="section-card auth-card">
+    <p class="hero-kicker">Tizimga kirish</p>
+    <h2 class="section-title">Kirish</h2>
+    <p class="section-text">Hisobingizga kiring va barcha o'quv materiallariga to'liq kirish huquqini oling.</p>
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_username">Foydalanuvchi nomi</label>
+        <input type="text" name="username" id="id_username" required class="form-control" />
+        <small class="form-help">Ro'yxatdan o'tishda kirgan foydalanuvchi nomingizni kiriting.</small>
+      </div>
+      <div class="form-group">
+        <label for="id_password">Parol</label>
+        <input type="password" name="password" id="id_password" required class="form-control" />
+        <small class="form-help">Parolni unutsangiz, administratorga murojaat qiling.</small>
+      </div>
+      <div class="auth-actions">
+        <button type="submit" class="btn btn-accent">Kirish</button>
+        <a class="btn btn-accent-outline" href="{% url 'core:signup' %}">Ro'yxatdan o'tish</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

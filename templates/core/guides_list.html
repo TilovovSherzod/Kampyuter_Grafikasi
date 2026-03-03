@@ -1,0 +1,21 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>O'quv qo'llanmalar</h2>
+    <p>
+      {% if user.is_staff or user.is_superuser %}
+        <a class="btn" href="{% url 'core:guide_add' %}">Yangi qo'llanma yuklash (admin)</a>
+      {% endif %}
+    </p>
+    <ul class="resource-list">
+      {% for g in guides %}
+        <li>
+          <a href="{% url 'core:guide_detail' g.pk %}">{{ g.title }}</a>
+          <small>{{ g.created_at|date:'Y-m-d' }}</small>
+        </li>
+      {% empty %}
+        <li>Hozircha hech qanday qo'llanma mavjud emas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

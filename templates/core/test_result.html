@@ -1,0 +1,24 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>Natija: {{ attempt.test.title }}</h2>
+    <p>Toplangan ball: {{ attempt.score }} / {{ attempt.max_score }}</p>
+    <hr>
+    <div class="feedback">
+      {% for f in feedback %}
+        <div class="fb-question">
+          <h4>{{ forloop.counter }}. {{ f.question.text }} <small>({{ f.points }} pt)</small></h4>
+          <p>Tanlagan javoblar:
+            {% for c in f.chosen %} {{ c.text }}; {% endfor %}
+          </p>
+          <p>To'g'ri javoblar:
+            {% for c in f.correct %} {{ c.text }}; {% endfor %}
+          </p>
+          <p>Status: {% if f.is_correct %}<strong style="color:lightgreen">To'g'ri</strong>{% else %}<strong style="color:#ff7b7b">Noto'g'ri</strong>{% endif %}</p>
+        </div>
+        <hr>
+      {% endfor %}
+    </div>
+    <p><a href="{% url 'core:tests_list' %}">Boshqa testlar</a></p>
+  </div>
+{% endblock %}

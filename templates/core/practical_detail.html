@@ -1,0 +1,15 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.description }}</p>
+    {% if item.files %}
+      {% if user.is_authenticated %}
+        <p><a href="{{ item.files.url }}" target="_blank">Faylni ko'rish</a> | <a href="{% url 'core:practical_download' item.id %}">Yuklab olish</a></p>
+      {% else %}
+        <p class="text-warning">Faylni yuklab olish uchun iltimos ro'yxatdan o'ting yoki kiring.</p>
+      {% endif %}
+    {% endif %}
+    <p><a href="{% url 'core:practicals_list' %}">Ortga</a></p>
+  </div>
+{% endblock %}

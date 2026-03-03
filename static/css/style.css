@@ -1,0 +1,263 @@
+:root{
+  /* Softer, motivatsion palitra: chuqur navy fon, iliq sariq-accent */
+  --bg: #07122a; /* deep navy but not pure black */
+  --card: #0f2433; /* slightly bluish card background */
+  --accent: #ffb020; /* warm, motivating amber accent */
+  --muted: #94a3b8; /* cool muted color for secondary text */
+  --white: #ffffff; /* brighter white for highlights */
+  --soft-white: #f8fafc; /* for subtle off-white uses */
+}
+*{box-sizing:border-box}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.site-bg-image {
+  /* Full-bleed background: use user's uploaded image `tiqxmmi.png`. Overlay is slightly darker for legibility. */
+  background-image: linear-gradient(180deg, rgba(7,18,42,0.55), rgba(7,18,42,0.55)), url('/static/img/tiqxmmi.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+.site-bg-image {
+  /* Full-bleed background: use project fon.jpg for a large photo background. Overlay increased for better contrast. */
+  background-image: linear-gradient(180deg, rgba(7,18,42,0.62), rgba(7,18,42,0.62)), url('/static/img/fon.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* subtle slow zoom animation to make the background feel alive */
+  animation: bg-zoom 30s ease-in-out infinite;
+}
+
+@keyframes bg-zoom {
+  0% { background-size: 100% auto; }
+  50% { background-size: 110% auto; }
+  100% { background-size: 100% auto; }
+}
+
+/* Disable fixed attachment on small screens for performance */
+@media (max-width:700px){
+  .site-bg-image{ background-attachment: scroll !important; }
+}
+
+/* Canvas network background sits above the image but behind content */
+.bg-network-canvas {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* placed behind content which should be z-index:1 */
+  pointer-events: none;
+  display: block;
+  /* subtle blending so canvas animation integrates with photo background */
+  mix-blend-mode: screen;
+  opacity: 0.92;
+}
+
+/* Ensure main content stacks above the canvas */
+.content, .container { position: relative; z-index: 1; }
+
+/* Ensure only one site background is defined (use fon.jpg).
+   Removed duplicate tiqxmmi.png declarations that could override this. */
+
+body{font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;margin:0;color:var(--white);-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,var(--bg), #041025)}
+/* Compact header: reduce padding and sizes to make header ~3x smaller */
+.site-header{background:linear-gradient(90deg, rgba(6,18,36,0.95), rgba(7,18,42,0.95));color:var(--white);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.header-inner{display:flex;align-items:center}
+.brand{display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+/* Logo sits to the left of the text and should not drop below it */
+.logo{width:112px;height:auto;background:#0f1720;border-radius:8px;flex:0 0 auto}
+.brand img.logo{filter:drop-shadow(0 6px 20px rgba(255,176,32,0.10));order:1;margin-right:12px}
+.brand .brand-text{order:2;display:flex;flex-direction:column;min-width:0}
+.titles .univ{font-size:0.72rem;opacity:0.85}
+.site-title{margin:0;font-size:0.9rem;color:var(--accent);line-height:1}
+
+/* Ensure navbar stays to the right while brand content sits to the left */
+.container.d-flex.align-items-center.justify-content-between{gap:12px}
+
+.hero{background-image:linear-gradient(180deg, rgba(7,18,42,0.55), rgba(7,18,42,0.55)), url('/static/img/hero-bg.jpg');background-size:cover;background-position:center;padding:64px 0;border-radius:16px;box-shadow:0 30px 60px rgba(2,6,23,0.35)}
+.hero-overlay{padding:42px 0;text-align:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);color:var(--soft-white);font-size:0.85rem;margin:0 0 14px}
+.hero-title{font-size:2.4rem;margin:0;color:var(--soft-white);text-shadow:0 2px 14px rgba(2,6,23,0.55)}
+.hero-sub{opacity:0.95;margin:14px auto 0;color:var(--muted);max-width:720px}
+.hero-actions{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+.main-grid{padding:36px 0;display:flex;flex-direction:column;gap:24px}
+.section-card{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px;box-shadow:0 20px 45px rgba(2,6,23,0.35)}
+.section-title{margin:0 0 12px;color:var(--soft-white);font-size:1.35rem}
+.section-text{margin:0;color:var(--muted);line-height:1.65}
+.section-list{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+.section-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:18px}
+.cta-card{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Auth pages */
+.auth-page{max-width:980px;margin:0 auto;padding:24px 0}
+.auth-card{max-width:560px;margin:0 auto}
+.auth-form{margin-top:18px;display:flex;flex-direction:column;gap:14px}
+.auth-form .form-group{display:flex;flex-direction:column;gap:6px}
+.auth-form label{color:var(--soft-white);font-weight:600}
+.auth-form input,
+.auth-form select,
+.auth-form textarea{background:rgba(8,18,32,0.7);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 12px;color:var(--soft-white)}
+.auth-form input:focus,
+.auth-form select:focus,
+.auth-form textarea:focus{outline:none;border-color:rgba(255,176,32,0.6);box-shadow:0 0 0 3px rgba(255,176,32,0.15)}
+.auth-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.form-help{font-size:0.82rem;color:var(--muted)}
+
+/* Password strength meter */
+.strength-meter{margin-top:10px;width:100%;height:8px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden}
+.strength-bar{display:block;height:100%;width:0%;background:linear-gradient(90deg, #ef4444, #f59e0b, #22c55e);transition:width 0.2s ease}
+.strength-text{margin-top:6px;font-size:0.82rem;color:var(--soft-white)}
+
+/* Dashboard */
+.dashboard{display:flex;flex-direction:column;gap:24px}
+.dashboard-header{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.dashboard-table{width:100%;border-collapse:collapse;color:var(--soft-white)}
+.dashboard-table th,
+.dashboard-table td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
+.dashboard-table thead th{color:var(--soft-white);font-weight:700}
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+.app-card{background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));padding:18px;border-radius:12px;text-align:center;color:var(--white);text-decoration:none;border:1px solid rgba(255,255,255,0.06);transition:transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s ease, border-color .18s ease}
+.app-card .card-body{min-height:110px;display:flex;flex-direction:column;justify-content:center}
+.app-card:hover{transform:translateY(-8px);box-shadow:0 22px 48px rgba(12,20,30,0.55);border-color: rgba(255,255,255,0.12)}
+.icon{font-size:30px;color:var(--accent)}
+.label{margin-top:10px;font-weight:700;color:var(--white)}
+.app-card .label{color:var(--white)}
+.app-card .icon{filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35))}
+
+/* subtle white accents for headings and links */
+.hero-title, .site-title, .nav-link { color: var(--white) !important; }
+.nav-link:hover, .nav-link:focus { background: rgba(255,255,255,0.03); border-radius:6px; }
+
+/* Vertical nav beside the site title (desktop) */
+.nav-vertical { gap: 6px; }
+.nav-vertical .nav-link { color: var(--soft-white); padding:6px 10px; display:block; font-weight:600; }
+.nav-vertical .nav-link:hover { background: rgba(255,255,255,0.03); border-radius:6px; color:var(--white); }
+
+/* accent button uses a white highlight to pop */
+.btn-accent{background:linear-gradient(90deg,var(--accent), #ff9f1a);color:#08101a;border:0}
+.btn-accent-outline{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--soft-white)}
+.btn-accent:focus, .btn-accent:hover{box-shadow:0 8px 24px rgba(255,176,32,0.14);color:#08101a}
+
+/* Accent styles */
+.accent{color:var(--accent)}
+.btn-accent{background:linear-gradient(90deg,var(--accent), #ff9f1a);color:#08101a;border:0}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;background:linear-gradient(0deg, rgba(2,6,23,0.55), rgba(2,6,23,0.55));display:flex;align-items:center;justify-content:center;padding:28px;z-index:60}
+.modal{background:linear-gradient(180deg,var(--card), #0b2b3a);width:100%;max-width:980px;border-radius:12px;color:var(--soft-white);overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+.modal-close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:var(--white);font-size:18px}
+.modal-body{display:flex;gap:16px}
+.modal-list{width:260px;background:rgba(255,255,255,0.03);padding:12px;height:480px;overflow:auto;border-right:1px solid rgba(255,255,255,0.04)}
+.modal-list ul{list-style:none;padding:0;margin:0}
+.modal-list li{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.modal-content{flex:1;padding:24px}
+.hidden{display:none}
+
+.site-footer{padding:28px 0;background:transparent;border-top:1px solid rgba(255,255,255,0.03)}
+.author{display:flex;gap:12px;align-items:center}
+.author-photo{width:72px;height:72px;border-radius:8px;object-fit:cover;border:2px solid rgba(255,255,255,0.06)}
+.author-info .name{font-weight:700;color:var(--white)}
+
+/* small utility: make some text brighter when needed */
+.bright { color: var(--white) !important; }
+
+/* Compact homepage list styles */
+.compact-list{
+  max-width:1100px; /* wide container for 4 columns */
+  width:100%;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr); /* default to 4 columns on wide screens */
+  gap:24px;
+  padding:28px 0;
+  justify-items:center;
+}
+
+/* Make each item noticeably larger (~2x) */
+.compact-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--soft-white);
+  padding:18px 20px;
+  border-radius:14px;
+  border:1px solid transparent;
+  transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
+  width:100%;
+  max-width:340px; /* slightly narrower so three fit comfortably */
+}
+.compact-item:hover{transform:translateY(-6px);background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,0.04);box-shadow:0 18px 40px rgba(2,6,23,0.45)}
+
+.compact-icon{width:112px;height:112px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));font-size:48px;color:var(--accent);box-shadow:0 10px 30px rgba(2,6,23,0.45)}
+.compact-label{font-size:1.35rem;font-weight:700;color:var(--soft-white)}
+
+/* Responsive breakpoints:
+   - >=1100px: 3 columns
+   - 700px - 1099px: 2 columns
+   - <=699px: 1 column
+*/
+@media (max-width:1199px){
+  .compact-list{grid-template-columns: repeat(2, 1fr); max-width:820px}
+  .compact-item{max-width:420px}
+  .compact-icon{width:96px;height:96px;font-size:40px}
+  .compact-label{font-size:1.25rem}
+}
+
+@media (max-width:699px){
+  .compact-list{grid-template-columns: 1fr; max-width:360px}
+  .compact-item{max-width:100%}
+  .compact-icon{width:80px;height:80px;font-size:34px}
+  .compact-label{font-size:1.1rem}
+}
+
+
+@media (max-width:700px){.modal-body{flex-direction:column}.modal-list{width:100%;height:240px}.hero-title{font-size:1.4rem}}
+
+@media (max-width:700px){
+  .hero{padding:36px 0}
+  .hero-overlay{padding:28px 0}
+  .hero-actions{flex-direction:column}
+  .section-card{padding:18px}
+  .cta-card{align-items:flex-start}
+  .dashboard-header{align-items:flex-start}
+}
+
+
+/* -------------------------
+   Authors panel (bottom window)
+   - Stacked authors (vertical list)
+   - Dismissible with a close button
+   - Centers on small screens
+   ------------------------- */
+.authors-panel{
+  /* Make the authors panel part of the page flow (non-floating). It will sit below the footer.
+     Use a constrained centered container so it behaves like a bottom info strip. */
+  position:relative;
+  margin:18px auto 28px;
+  width:100%;
+  max-width:1100px;
+  background:linear-gradient(180deg, rgba(11,43,58,0.92), rgba(7,18,42,0.98));
+  border:1px solid rgba(255,255,255,0.04);
+  padding:12px 14px;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(2,6,23,0.45);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.authors-panel .author{display:flex;gap:16px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0))}
+.authors-panel .authors-title{font-size:1.05rem;color:var(--soft-white);letter-spacing:0.4px;margin:2px 4px 2px}
+.authors-panel .author .author-photo{width:96px;height:96px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.08);box-shadow:0 6px 18px rgba(2,6,23,0.35)}
+.authors-panel .author .author-info .name{font-size:1.05rem;letter-spacing:0.2px}
+.authors-panel .author .author-info .role,.authors-panel .author .author-info .email{font-size:0.86rem;color:var(--muted)}
+
+.authors-panel .close-btn{position:absolute;top:8px;right:10px;background:transparent;border:0;color:var(--soft-white);font-size:20px;line-height:1;cursor:pointer}
+
+@media (max-width:700px){
+  .authors-panel{right:12px;left:12px;bottom:12px;width:auto;max-width:none;border-radius:10px}
+  .authors-panel .author{gap:10px}
+}
+

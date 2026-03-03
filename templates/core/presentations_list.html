@@ -1,0 +1,30 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+<div class="container section-card">
+  <h2 class="section-title">Taqdimotlar</h2>
+  <p class="section-text">Mavzular bo‘yicha taqdimotlar ro‘yxati.</p>
+
+  <div class="list-group">
+    {% for item in items %}
+      <div class="list-group-item bg-transparent border-0">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <div class="fw-semibold text-white">{{ item.title }}</div>
+            <div class="small text-muted">{{ item.description|default:"" }}</div>
+          </div>
+          <div class="d-flex gap-2">
+            {% if item.file %}
+              <a class="btn btn-accent-outline btn-sm" href="{{ item.file.url }}" target="_blank">Ko‘rish</a>
+              <a class="btn btn-accent btn-sm" href="{% url 'core:presentation_download' item.id %}">Yuklab olish</a>
+            {% else %}
+              <span class="text-warning small">Fayl mavjud emas</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="text-muted">Hozircha taqdimotlar mavjud emas.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

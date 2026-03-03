@@ -1,0 +1,14 @@
+{% extends 'base_fragment.html' %}
+{% block content %}
+<div class="container auth-page">
+  <div class="section-card auth-card">
+    <p class="hero-kicker">Sessiya yakunlandi</p>
+    <h2 class="section-title">Chiqdingiz</h2>
+    <p class="section-text">Siz muvaffaqiyatli chiqdingiz. Bosh sahifaga qaytib, yana kirishingiz mumkin.</p>
+    <div class="auth-actions">
+      <a class="btn btn-accent" href="/">Bosh sahifa</a>
+      <a class="btn btn-accent-outline" href="{% url 'login' %}">Qayta kirish</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base_fragment.html" %}
+{% load group_tags %}
+{% block content %}
+  <div class="container">
+    <h2>Testlar</h2>
+    <p>
+      {% if user.is_staff or user.is_superuser or user|has_group:'teacher' %}
+        <a class="btn" href="{% url 'admin:core_test_add' %}">Yangi test qo'shish (admin)</a>
+      {% endif %}
+    </p>
+    <ul class="resource-list">
+      {% for it in items %}
+        <li>
+          <a href="{% url 'core:test_detail' it.pk %}">{{ it.title }}</a>
+          <small>{{ it.created_at|date:'Y-m-d' }}</small>
+          {% if it.file %}
+            <span class="ms-2"><a href="{{ it.file.url }}" download>Faylni yuklab olish</a></span>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>Hozircha hech qanday test mavjud emas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

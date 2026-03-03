@@ -1,0 +1,77 @@
+{% extends 'base_fragment.html' %}
+{% block content %}
+<div class="container auth-page">
+  <div class="section-card auth-card">
+    <p class="hero-kicker">Ro'yxatdan o'tish</p>
+    <h2 class="section-title">Yangi hisob yaratish</h2>
+    <p class="section-text">Platformadagi barcha materiallarga kirish uchun hisob yarating.</p>
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="form-group">
+        <label for="id_username">Foydalanuvchi nomi</label>
+        {{ form.username }}
+        <small class="form-help">Masalan: ism.familiya yoki talabaga berilgan login.</small>
+      </div>
+      <div class="form-group">
+        <label for="id_password1">Parol</label>
+        {{ form.password1 }}
+        <small class="form-help">Kamida 8 ta belgi, harf va raqam aralash bo'lsin.</small>
+        <div class="strength-meter" aria-hidden="true">
+          <span class="strength-bar" id="strengthBar"></span>
+        </div>
+        <div class="strength-text" id="strengthText">Parol kuchi: baholanmoqda...</div>
+      </div>
+      <div class="form-group">
+        <label for="id_password2">Parolni tasdiqlash</label>
+        {{ form.password2 }}
+        <small class="form-help">Yuqoridagi parol bilan bir xil bo'lishi kerak.</small>
+      </div>
+      <div class="auth-actions">
+        <button type="submit" class="btn btn-accent">Ro'yxatdan o'tish</button>
+        <a class="btn btn-accent-outline" href="{% url 'login' %}">Kirish</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  (function(){
+    const input = document.getElementById('id_password1');
+    const bar = document.getElementById('strengthBar');
+    const text = document.getElementById('strengthText');
+    if (!input || !bar || !text) return;
+
+    function scorePassword(pw){
+      let score = 0;
+      if (!pw) return score;
+      if (pw.length >= 8) score += 1;
+      if (pw.length >= 12) score += 1;
+      if (/[A-Z]/.test(pw)) score += 1;
+      if (/[a-z]/.test(pw)) score += 1;
+      if (/[0-9]/.test(pw)) score += 1;
+      if (/[^A-Za-z0-9]/.test(pw)) score += 1;
+      return score;
+    }
+
+    function update(){
+      const val = input.value;
+      const score = scorePassword(val);
+      const pct = Math.min(100, (score / 6) * 100);
+      bar.style.width = pct + '%';
+      bar.dataset.level = score;
+      if (!val) {
+        text.textContent = "Parol kuchi: baholanmoqda...";
+      } else if (score <= 2) {
+        text.textContent = "Parol kuchi: zaif";
+      } else if (score <= 4) {
+        text.textContent = "Parol kuchi: o'rtacha";
+      } else {
+        text.textContent = "Parol kuchi: kuchli";
+      }
+    }
+
+    input.addEventListener('input', update);
+    update();
+  })();
+</script>
+{% endblock %}

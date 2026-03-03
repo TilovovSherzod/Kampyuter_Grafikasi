@@ -1,0 +1,21 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>Video ma'ruzalar</h2>
+    <p>
+      {% if user.is_staff or user.is_superuser %}
+        <a class="btn" href="{% url 'core:video_add' %}">Yangi video yuklash (admin)</a>
+      {% endif %}
+    </p>
+    <ul class="resource-list">
+      {% for v in videos %}
+        <li>
+          <a href="{% url 'core:video_detail' v.pk %}">{{ v.title }}</a>
+          <small>{{ v.created_at|date:'Y-m-d' }}</small>
+        </li>
+      {% empty %}
+        <li>Hozircha hech qanday video mavjud emas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

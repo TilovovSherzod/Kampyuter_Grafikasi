@@ -1,0 +1,15 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>Mening natijalarim</h2>
+    <ul>
+      {% for a in attempts %}
+        <li>
+          <a href="{% url 'core:test_result' a.pk %}">{{ a.test.title }}</a> — {{ a.score }} / {{ a.max_score }} — {{ a.started_at|date:'Y-m-d H:i' }}
+        </li>
+      {% empty %}
+        <li>Hozircha urinishlar mavjud emas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

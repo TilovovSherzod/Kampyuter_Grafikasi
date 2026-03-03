@@ -1,0 +1,21 @@
+{% extends "base_fragment.html" %}
+{% block content %}
+  <div class="container">
+    <h2>Amaliy mashg'ulotlar</h2>
+    <p>
+      {% if user.is_staff or user.is_superuser %}
+        <a class="btn" href="{% url 'core:practical_add' %}">Yangi topshiriq yuklash (admin)</a>
+      {% endif %}
+    </p>
+    <ul class="resource-list">
+      {% for it in items %}
+        <li>
+          <a href="{% url 'core:practical_detail' it.pk %}">{{ it.title }}</a>
+          <small>{{ it.created_at|date:'Y-m-d' }}</small>
+        </li>
+      {% empty %}
+        <li>Hozircha hech qanday amaliy mashg'ulot mavjud emas.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

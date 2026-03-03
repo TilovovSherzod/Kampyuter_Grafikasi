@@ -1,0 +1,76 @@
+{% extends "base_fragment.html" %}
+{% load static range_tags %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero-overlay text-center py-5">
+      <div class="container">
+        <p class="hero-kicker">Ta'lim platformasi</p>
+        <h2 class="hero-title">Muhandislik kompyuter grafikasi</h2>
+        {% if not user.is_authenticated %}
+          <p class="hero-sub">Dars materiallari, taqdimotlar, qo'llanmalar va amaliy topshiriqlarni tartibli va qulay ko'rinishda taqdim etuvchi yagona markaz.</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="{% url 'core:signup' %}">Ro'yxatdan o'tish</a>
+            <a class="btn btn-accent-outline" href="{% url 'login' %}">Kirish</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <main class="main-grid py-4">
+    <section class="container section-card">
+      <h3 class="section-title">Maqsad va yo'nalish</h3>
+  <p class="section-text">Ushbu platforma “Muhandislik kompyuter grafikasi” fanini o'qitish va o'rganishga mo'ljallangan. Vazifamiz — talabalarni darsliklar, taqdimotlar va amaliy mashg'ulotlar bilan ta'minlash.</p>
+    </section>
+
+    <section class="container section-card">
+      <h3 class="section-title">Asosiy bo'limlar</h3>
+      <p class="section-text">Barcha materiallar quyidagi bo'limlar orqali beriladi. Har bir bo'lim tartibli va izchil tarzda tuzilgan.</p>
+      <div class="sections d-flex justify-content-center">
+        <div class="compact-list">
+          <a class="compact-item" href="{% url 'core:guides_list' %}" title="O'quv qo'llanma">
+            <div class="compact-icon">📘</div>
+            <div class="compact-label">O'quv qo'llanma</div>
+          </a>
+
+          <a class="compact-item" href="{% url 'core:presentations_list' %}" title="Taqdimot">
+            <div class="compact-icon">📁</div>
+            <div class="compact-label">Taqdimot</div>
+          </a>
+
+          <a class="compact-item" href="{% url 'core:practicals_list' %}" title="Amaliy mashg'ulot">
+            <div class="compact-icon">🛠️</div>
+            <div class="compact-label">Amaliy mashg'ulot</div>
+          </a>
+
+          <a class="compact-item" href="{% url 'core:tests_list' %}" title="Test">
+            <div class="compact-icon">✅</div>
+            <div class="compact-label">Test</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-grid">
+      <div class="section-card">
+        <h3 class="section-title">Foydalanuvchi oqimi</h3>
+        <p class="section-text">Foydalanuvchi ro'yxatdan o'tmaguncha dars materiallarini ko'ra olmaydi va fayllarni yuklab ololmaydi. Kirish yoki ro'yxatdan o'tish orqali tizimga kirgach, barcha materiallardan erkin foydalanish mumkin.</p>
+      </div>
+      <div class="section-card">
+        <h3 class="section-title">Kontent turlari</h3>
+        <ul class="section-list">
+          <li>Fayllar: qo'llanmalar, darsliklar, amaliy topshiriqlar.</li>
+          <li>Taqdimot: modal orqali ko'rish/yuklash.</li>
+          <li>Testlar: bilimni tekshirish va mustahkamlash.</li>
+        </ul>
+      </div>
+      <div class="section-card">
+        <h3 class="section-title">O'qituvchi paneli</h3>
+        <p class="section-text">O'qituvchi paneli orqali resurslarni boshqarish, testlar va natijalarni ko'rish imkoniyatlari mavjud.</p>
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}
