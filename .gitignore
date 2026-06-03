@@ -1,8 +1,21 @@
-.venv/
-__pycache__/
-*.pyc
-.pytest_cache/
-env/
-/.vscode/
-db.sqlite3
-*.db
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Optional Directories
+node_modules/
+dist/
+build/
+
+# Static File Caches
+*.cache
+
+# Local Testing
+.local/

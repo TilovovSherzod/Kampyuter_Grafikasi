@@ -1,43 +1,100 @@
-# Mukammal Python Backend Websayt (FastAPI)
+# Muhandislik Kompyuter Grafikasi - Ta'lim Platformasi
 
-Ushbu loyiha — FastAPI asosida kichik veb-sayt skeleti. Unda:
+Ushbu vebsayt HTML, CSS va JavaScript orqali tuzilgan statik veb-platforma bo'lib, "Muhandislik kompyuter grafikasi" fanining o'quv materiallari va resurslarini taqdim etadi.
 
-- Asosiy FastAPI server (`main.py`)
-- Jinja2 shablonlari (`templates/`)
-- Statik fayllar (`static/`)
-- Testlar (`tests/`)
+## 📋 Sahifalar
 
+- **index.html** - Bosh sahifa (asosiy tanishtirish)
+- **guides.html** - O'quv qo'llanmalar
+- **presentations.html** - Taqdimot slaydlari
+- **practicals.html** - Amaliy mashg'ulotlar
+- **tests.html** - Testlar va o'zini o'zi baholash
 
-Tez boshlash (Windows PowerShell, Django):
+## 📁 Loyiha Tuzilishi
 
-```powershell
-# 1) Virtual muhit yarating va faollashtiring
-python -m venv .venv
-. .venv\Scripts\Activate.ps1
-
-# 2) Kutubxonalarni o'rnating
-pip install -r requirements.txt
-
-# 3) Lokal serverni ishga tushiring
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
-
-# 4) Brauzerda oching: http://127.0.0.1:8000
+```
+Kampyuter_Grafikasi/
+├── index.html              # Bosh sahifa
+├── guides.html            # O'quv qo'llanmalar
+├── presentations.html     # Taqdimotlar
+├── practicals.html        # Amaliy mashg'ulotlar
+├── tests.html             # Testlar
+├── static/
+│   ├── css/
+│   │   └── style.css      # Asosiy CSS stillar
+│   ├── js/
+│   │   └── main.js        # JavaScript (animatsiya)
+│   └── img/               # Rasmlar va logotiplar
+├── README.md              # Bu fayl
+└── LICENSE                # Litsenziya
 ```
 
-Testlarni ishga tushirish (agar kerak bo'lsa):
+## 🚀 Ishga Tushirish
 
-```powershell
-pip install -r requirements.txt
-pytest -q
+### Mahalliy Kompyuterda Ochish
+
+HTML fayllarini bevosita brauzerda ochish mumkin:
+
+```bash
+# Windows-da
+start index.html
+
+# Linux/Mac-da
+open index.html
 ```
 
-E'tibor: PowerShell-da skriptlarni ishga tushirishda ExecutionPolicy cheklovlari bo'lishi mumkin. Agar `Activate.ps1` ishlamasa, quyidagi buyruqni administrator huquqi bilan ishga tushiring:
+### Web Serverida Joylashtirish
 
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```bash
+# Python-da simple server
+python -m http.server 8000
+
+# Keyin: http://localhost:8000
 ```
 
-Keyingi qadamlar (takliflar): autentifikatsiya, ma'lumotlar bazasi (Postgres), foydalanuvchi paneli, REST API kengaytmalari.
+```bash
+# Node.js-da
+npx http-server
 
-Muallif: Siz (loyiha boshlang'ich skeleti)
+# Keyin: http://localhost:8080
+```
+
+## 🎨 Xususiyatlar
+
+- ✅ **Statik Vebsayt** - Hech qanday backend kerak emas
+- ✅ **Responsive Dizayn** - Barcha cihazlarda ishlaydi
+- ✅ **Dark Theme** - Ko'zga yoqimli to'msh matnli interfeys
+- ✅ **Animated Background** - Canvas-da animatsiyalashtirilgan fon
+- ✅ **Bootstrap 5** - Zamonaviy CSS framework
+- ✅ **O'zbekcha Tili** - To'liq O'zbekchada
+
+## 🛠️ Texnologiyalar
+
+- **HTML 5** - Sahifa tuzilishi
+- **CSS 3** - Styling va animatsiyalar
+- **JavaScript (Vanilla)** - Interaktivlik
+- **Bootstrap 5** - Responsive grid
+- **Canvas API** - Fon animatsiyasi
+
+## 📝 Muallif
+
+**Hursandova Dilafruz Saidovna**
+- Email: dilafruz.saidovna@example.com
+
+## 📄 Litsenziya
+
+Bu loyiha MIT Litsenziyasi ostida taqdim etiladi.
+
+## 💡 Qo'shimcha Ma'lumot
+
+Ushbu vebsayt to'liq statik va Django, Python yoki boshqa backend kerak emas. Barcha fayllar mahalliy bo'lib, serverdan qo'shimcha so'rovlar yo'q.
+
+Vebsaytni o'z xohishingiz bo'yicha sozlash va kengaytirish oson:
+- CSS-da ranglarni o'zgartiring
+- Sahifalarga yangi kontent qo'shing
+- JavaScript-ga interaktiv funksionallik qo'shing
+
+---
+
+**Yaratilgan:** 2026
+**Versiya:** 1.0 (Static HTML/CSS/JS)

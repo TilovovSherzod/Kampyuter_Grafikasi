@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish - Muhandislik kompyuter grafikasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+        .site-header { padding: 1rem 0; }
+        .main-nav a { color: #dbeafe; margin-right: 12px; text-decoration: none; }
+        .main-nav a:hover { color: #ffb020; }
+        .brand-text { color: #e0f2fe; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="site-bg-image"></div>
+    <div id="bg-network-canvas"></div>
+    
+    <div style="position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column;">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="static/img/logo.png" alt="Logo" class="logo" style="width: 112px; height: 112px; margin-right: 20px;">
+                    <div>
+                        <div class="brand-text">Oliy ta'lim muassasasi</div>
+                        <h1 class="site-title" style="margin: 0; color: #fff; font-size: 1.5rem;">Muhandislik grafikasi</h1>
+                    </div>
+                </div>
+                <nav class="main-nav d-flex gap-3 align-items-center" style="flex-wrap: wrap;">
+                    <a href="index.html" style="color: #dbeafe; text-decoration: none;">Asosiy</a>
+                    <a href="guides.html" style="color: #dbeafe; text-decoration: none;">Qo'llanmalar</a>
+                    <span id="nav-user"></span>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+            <div class="container" style="max-width: 450px;">
+                <div class="section-card" style="padding: 40px;">
+                    <h2 style="text-align: center; color: #f8fafc; margin-bottom: 10px; font-size: 1.8rem;">Ro'yxatdan o'tish</h2>
+                    <p style="text-align: center; color: #94a3b8; margin-bottom: 30px; font-size: 0.95rem;">Yangi akaunt yaratish uchun ma'lumotlarni to'ldiring</p>
+                    
+                    <form id="signup-form" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="form-group">
+                            <label for="name" style="color: #e0f2fe; font-weight: 500; margin-bottom: 8px; display: block; font-size: 0.95rem;">To'liq ism</label>
+                            <input type="text" id="name" required style="width: 100%; padding: 10px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem;" placeholder="Sizning ismingiz">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" style="color: #e0f2fe; font-weight: 500; margin-bottom: 8px; display: block; font-size: 0.95rem;">Email</label>
+                            <input type="email" id="email" required style="width: 100%; padding: 10px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem;" placeholder="example@mail.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" style="color: #e0f2fe; font-weight: 500; margin-bottom: 8px; display: block; font-size: 0.95rem;">Parol</label>
+                            <input type="password" id="password" required style="width: 100%; padding: 10px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem;" placeholder="Minimal 6 belgisi">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password" style="color: #e0f2fe; font-weight: 500; margin-bottom: 8px; display: block; font-size: 0.95rem;">Parolni tasdiqlang</label>
+                            <input type="password" id="confirm-password" required style="width: 100%; padding: 10px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.95rem;" placeholder="••••••••">
+                        </div>
+                        
+                        <button type="submit" class="btn-accent" style="width: 100%; padding: 12px; border: 0; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 10px;">Ro'yxatdan o'tish</button>
+                    </form>
+
+                    <div id="signup-message" style="margin-top: 15px; padding: 12px; border-radius: 6px; text-align: center; display: none;"></div>
+
+                    <p style="text-align: center; color: #94a3b8; margin-top: 20px; font-size: 0.9rem;">
+                        Allaqachon akkauntingiz bor? 
+                        <a href="login.html" style="color: #ffb020; text-decoration: none; font-weight: 600;">Kirish</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
+                <small style="color: #94a3b8;">© 2026 — Muhandislik kompyuter grafikasi</small>
+                <small style="color: #94a3b8;">Ma'lumot uchun muallif bo'limini sahifa pastida tekshiring.</small>
+            </div>
+        </footer>
+    </div>
+
+    <script src="static/js/main.js"></script>
+    <script>
+        // Update navigation based on login status
+        function updateNav() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const navUser = document.getElementById('nav-user');
+            
+            if (user) {
+                navUser.innerHTML = `
+                    <a href="profile.html" style="color: #ffb020; text-decoration: none; font-weight: 600;">👤 ${user.name}</a>
+                    <button onclick="logout()" style="background: transparent; border: 1px solid #ffb020; color: #ffb020; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">Chiqish</button>
+                `;
+            } else {
+                navUser.innerHTML = `
+                    <a href="login.html" class="btn-accent" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600;">Kirish</a>
+                    <a href="signup.html" class="btn-accent-outline" style="padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600;">Ro'yxat</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Siz chiqib ketdingiz!');
+            window.location.href = 'index.html';
+        }
+
+        // Handle signup
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            const message = document.getElementById('signup-message');
+            
+            // Validation
+            if (password.length < 6) {
+                message.style.display = 'block';
+                message.style.background = 'rgba(239, 68, 68, 0.1)';
+                message.style.border = '1px solid #ef4444';
+                message.style.color = '#fca5a5';
+                message.textContent = '❌ Parol minimal 6 belgisi bo\'lishi kerak!';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                message.style.display = 'block';
+                message.style.background = 'rgba(239, 68, 68, 0.1)';
+                message.style.border = '1px solid #ef4444';
+                message.style.color = '#fca5a5';
+                message.textContent = '❌ Parollar bir biriga mos emas!';
+                return;
+            }
+            
+            // Get existing users
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if email already exists
+            if (users.find(u => u.email === email)) {
+                message.style.display = 'block';
+                message.style.background = 'rgba(239, 68, 68, 0.1)';
+                message.style.border = '1px solid #ef4444';
+                message.style.color = '#fca5a5';
+                message.textContent = '❌ Bu email allaqachon ro\'yxatdan o\'tgan!';
+                return;
+            }
+            
+            // Add new user
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: password,
+                joinDate: new Date().toLocaleDateString('uz-UZ')
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Auto-login
+            localStorage.setItem('currentUser', JSON.stringify({
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email
+            }));
+            
+            message.style.display = 'block';
+            message.style.background = 'rgba(34, 197, 94, 0.1)';
+            message.style.border = '1px solid #22c55e';
+            message.style.color = '#86efac';
+            message.textContent = '✅ Muvaffaqiyatli ro\'yxatdan o\'tdingiz! Bir ozroq kutib uring...';
+            
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 1500);
+        });
+
+        // Initialize navigation
+        updateNav();
+    </script>
+</body>
+</html>

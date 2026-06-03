@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mening profilim - Muhandislik kompyuter grafikasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+        .site-header { padding: 1rem 0; }
+        .main-nav a { color: #dbeafe; margin-right: 12px; text-decoration: none; }
+        .main-nav a:hover { color: #ffb020; }
+        .brand-text { color: #e0f2fe; font-size: 0.95rem; }
+        .profile-header {
+            background: linear-gradient(180deg, rgba(11,43,58,0.92), rgba(7,18,42,0.98));
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ffb020, #ff9f1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            flex-shrink: 0;
+        }
+        .profile-info h2 {
+            color: #f8fafc;
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+        .profile-email {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .profile-join {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            color: #ffb020;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 30px;
+                gap: 20px;
+                flex-direction: column;
+            }
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            .profile-info h2 {
+                font-size: 1.5rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .profile-header {
+                padding: 20px;
+                gap: 15px;
+            }
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+            .profile-info h2 {
+                font-size: 1.3rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-bg-image"></div>
+    <div id="bg-network-canvas"></div>
+    
+    <div style="position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column;">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="static/img/logo.png" alt="Logo" class="logo" style="width: 112px; height: 112px; margin-right: 20px;">
+                    <div>
+                        <div class="brand-text">Oliy ta'lim muassasasi</div>
+                        <h1 class="site-title" style="margin: 0; color: #fff; font-size: 1.5rem;">Muhandislik grafikasi</h1>
+                    </div>
+                </div>
+                <nav class="main-nav d-flex gap-3 align-items-center" style="flex-wrap: wrap;">
+                    <a href="index.html" style="color: #dbeafe; text-decoration: none;">Asosiy</a>
+                    <a href="guides.html" style="color: #dbeafe; text-decoration: none;">Qo'llanmalar</a>
+                    <span id="nav-user"></span>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main style="flex: 1; padding: 40px 20px;">
+            <div class="container" style="max-width: 1000px;">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-avatar" id="avatar">👤</div>
+                    <div class="profile-info">
+                        <h2 id="user-name">--</h2>
+                        <div class="profile-email" id="user-email">--</div>
+                        <div class="profile-join" id="user-join">--</div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">O'quv qo'llanmalar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Taqdimotlar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Amaliy mashg'ulotlar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Testlar</div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <a href="guides.html" class="section-card" style="text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">📘</div>
+                        <h3 style="color: #f8fafc; margin: 0 0 10px 0; font-size: 1.1rem;">O'quv qo'llanmalar</h3>
+                        <p style="color: #94a3b8; margin: 0; font-size: 0.9rem;">Dars materiallari va qo'llanmalarni o'rganish</p>
+                    </a>
+                    <a href="presentations.html" class="section-card" style="text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">📁</div>
+                        <h3 style="color: #f8fafc; margin: 0 0 10px 0; font-size: 1.1rem;">Taqdimotlar</h3>
+                        <p style="color: #94a3b8; margin: 0; font-size: 0.9rem;">Dars taqdimotlari va slaydlarni ko'rish</p>
+                    </a>
+                    <a href="practicals.html" class="section-card" style="text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">🛠️</div>
+                        <h3 style="color: #f8fafc; margin: 0 0 10px 0; font-size: 1.1rem;">Amaliy mashg'ulotlar</h3>
+                        <p style="color: #94a3b8; margin: 0; font-size: 0.9rem;">Amaliy topshiriqlarni bajarish</p>
+                    </a>
+                    <a href="tests.html" class="section-card" style="text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <div style="font-size: 2rem; margin-bottom: 15px;">✅</div>
+                        <h3 style="color: #f8fafc; margin: 0 0 10px 0; font-size: 1.1rem;">Testlar</h3>
+                        <p style="color: #94a3b8; margin: 0; font-size: 0.9rem;">Bilimingizni tekshiring va mustahkam qiling</p>
+                    </a>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="section-card" style="padding: 30px;">
+                    <h3 style="color: #f8fafc; margin: 0 0 20px 0; font-size: 1.3rem;">⚙️ Sozlamalar</h3>
+                    
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button onclick="changePassword()" class="btn-accent" style="padding: 10px 20px; border: 0; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            🔐 Parol o'zgartirish
+                        </button>
+                        <button onclick="exportProfile()" class="btn-accent-outline" style="padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            📥 Ma'lumotlarni yuklab olish
+                        </button>
+                        <button onclick="deleteAccount()" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #fca5a5; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            🗑️ Akkauntni o'chirish
+                        </button>
+                        <button onclick="logout()" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #fca5a5; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            🚪 Chiqish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container d-flex justify-content-between align-items-center" style="flex-wrap: wrap;">
+                <small style="color: #94a3b8;">© 2026 — Muhandislik kompyuter grafikasi</small>
+                <small style="color: #94a3b8;">Ma'lumot uchun muallif bo'limini sahifa pastida tekshiring.</small>
+            </div>
+        </footer>
+    </div>
+
+    <script src="static/js/main.js"></script>
+    <script>
+        // Check if user is logged in
+        function checkLogin() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display user info
+            document.getElementById('user-name').textContent = user.name;
+            document.getElementById('user-email').textContent = user.email;
+            
+            // Get full user data to show join date
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const fullUser = users.find(u => u.id === user.id);
+            if (fullUser) {
+                document.getElementById('user-join').textContent = `Qo\'shilgan: ${fullUser.joinDate}`;
+            }
+            
+            // Create avatar with initials
+            const names = user.name.split(' ');
+            const initials = names.map(n => n[0]).join('').toUpperCase();
+            document.getElementById('avatar').textContent = initials;
+        }
+
+        // Update navigation
+        function updateNav() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const navUser = document.getElementById('nav-user');
+            
+            if (user) {
+                navUser.innerHTML = `
+                    <a href="profile.html" style="color: #ffb020; text-decoration: none; font-weight: 600;">👤 ${user.name}</a>
+                    <button onclick="logout()" style="background: transparent; border: 1px solid #ffb020; color: #ffb020; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">Chiqish</button>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Siz chiqib ketdingiz!');
+            window.location.href = 'index.html';
+        }
+
+        function changePassword() {
+            alert('Parol o\'zgartirish: Bu funksiya hali ishlab chiqilmoqda.');
+        }
+
+        function exportProfile() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const userData = JSON.stringify(user, null, 2);
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(userData));
+            element.setAttribute('download', `profile_${user.id}.json`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        function deleteAccount() {
+            if (confirm('Siz haqiqatan ham akkauntingizni o\'chirmoqchi musiz? Bu amalni qaytara olmaysiz!')) {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                users = users.filter(u => u.id !== user.id);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.removeItem('currentUser');
+                alert('Akkauntingiz o\'chirildi!');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize
+        checkLogin();
+        updateNav();
+    </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taqdimotlar - Muhandislik kompyuter grafikasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+        .site-header { padding: 1rem 0; }
+        .main-nav a { color: #dbeafe; margin-right: 12px; text-decoration: none; }
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .resource-card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 20px; transition: transform .2s ease, box-shadow .2s ease; }
+        .resource-card:hover { transform: translateY(-6px); box-shadow: 0 20px 45px rgba(2,6,23,0.35); }
+        .resource-title { font-size: 1.2rem; color: #f8fafc; margin-bottom: 10px; }
+        .resource-desc { color: #94a3b8; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
+        .resource-btn { display: inline-block; padding: 8px 16px; background: #ffb020; color: #07122a; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .resource-btn:hover { background: #ff9f1a; }
+    </style>
+</head>
+<body class="site-bg-image bg-dark text-light">
+    <canvas id="bg-network" class="bg-network-canvas" aria-hidden="true"></canvas>
+    
+    <header class="site-header border-bottom border-secondary">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-3 brand">
+                <img src="static/img/LOGO.png" alt="TIQXMMI" class="logo" onerror="this.src='static/img/tiqxmmi.png'">
+                <div class="brand-text">
+                    <div class="univ text-muted small">Oliy ta'lim muassasasi</div>
+                    <h1 class="h5 mb-0">Muhandislik kompyuter grafikasi</h1>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-dark p-0 w-auto">
+                <div class="container-fluid p-0">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mainNavbar">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                            <li class="nav-item"><a class="nav-link text-light" href="index.html">Bosh sahifa</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="guides.html">O'quv qo'llanma</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="presentations.html">Taqdimot</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="practicals.html">Amaliy mashg'ulot</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="tests.html">Test</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content py-4">
+        <div class="container">
+            <section class="hero">
+                <div class="hero-overlay text-center py-5">
+                    <h2 class="hero-title">Taqdimotlar</h2>
+                    <p class="hero-sub">Darslar uchun tayyorlangan taqdimot slaydlari va vizual materiallar</p>
+                </div>
+            </section>
+
+            <section class="container section-card mt-4">
+                <h3 class="section-title">📹 Video Maruzalar (9 ta)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <a href="https://mover.uz/watch/zcnGYU18" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 1</span>
+                    </a>
+                    <a href="https://mover.uz/watch/R3Z35Wgx" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 2</span>
+                    </a>
+                    <a href="https://mover.uz/watch/bgrzCtE6" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 3</span>
+                    </a>
+                    <a href="https://mover.uz/watch/0chL0C7L" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 4</span>
+                    </a>
+                    <a href="https://mover.uz/watch/6XsJ6XIP" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 5</span>
+                    </a>
+                    <a href="https://mover.uz/watch/eogqvcq7" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 6</span>
+                    </a>
+                    <a href="https://mover.uz/watch/aJ1Qd4at" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 7</span>
+                    </a>
+                    <a href="https://mover.uz/watch/z2sn6BK6" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 8</span>
+                    </a>
+                    <a href="https://mover.uz/watch/UzsbIlMI" target="_blank" style="display: flex; align-items: center; padding: 14px; background: rgba(255,176,32,0.1); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; text-decoration: none; color: #ffb020; transition: all .2s ease;">
+                        <span style="font-size: 1.5em; margin-right: 12px;">▶️</span>
+                        <span style="font-weight: 600;">Maruza 9</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="container section-card mt-4">
+                <h3 class="section-title">📊 Taqdimot Slaydlari (15 ta PDF)</h3>
+                <div class="resource-grid mt-4">
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 1</div>
+                        <p class="resource-desc">Birinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/1.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 2</div>
+                        <p class="resource-desc">Ikkinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/2.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 3</div>
+                        <p class="resource-desc">Uchinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/3.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 4</div>
+                        <p class="resource-desc">To'rtinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/4.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 5</div>
+                        <p class="resource-desc">Beshinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/5.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 6</div>
+                        <p class="resource-desc">Oltinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/6.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 7</div>
+                        <p class="resource-desc">Yettinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/7.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 8</div>
+                        <p class="resource-desc">Sakkizinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/8.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 9</div>
+                        <p class="resource-desc">To'qqizinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/9.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 10</div>
+                        <p class="resource-desc">O'ninchi taqdimot slaydlari</p>
+                        <a href="taqdimot/10.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 11</div>
+                        <p class="resource-desc">O'n birinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/11.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 12</div>
+                        <p class="resource-desc">O'n ikkinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/12.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 13</div>
+                        <p class="resource-desc">O'n uchinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/13.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 14</div>
+                        <p class="resource-desc">O'n to'rtinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/14.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-title">📄 Taqdimot 15</div>
+                        <p class="resource-desc">O'n beshinchi taqdimot slaydlari</p>
+                        <a href="taqdimot/15.pdf" class="resource-btn" download target="_blank">⬇️ Ochish</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer mt-5 py-4 border-top border-secondary">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="text-muted small">&copy; 2026 — Muhandislik kompyuter grafikasi</div>
+            <div class="text-muted small mt-3 mt-md-0">Ma'lumot uchun muallif bo'limini sahifa pastida tekshiring.</div>
+        </div>
+    </footer>
+
+    <div id="authorsPanel" class="authors-panel" aria-live="polite">
+        <button type="button" class="close-btn" aria-label="Yopish" onclick="document.getElementById('authorsPanel').style.display='none'">&times;</button>
+        <div class="authors-title fw-semibold">Muallif</div>
+        <div class="author">
+            <img src="static/img/ustoz.jpg" class="author-photo" alt="Muallif" onerror="this.src='static/img/default-avatar.jpg'">
+            <div class="author-info">
+                <div class="name fw-semibold">Hursandova Dilafruz Saidovna</div>
+                <div class="email small text-muted">dilafruz.saidovna@example.com</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/auth.js"></script>
+</body>
+</html>
